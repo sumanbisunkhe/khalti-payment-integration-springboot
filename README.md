@@ -1,4 +1,4 @@
-# Khalti Payment Integration  
+# Khalti Payment Integration
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Khalti_Digital_Wallet_Logo.png.jpg" alt="Khalti Logo" width="200"/>
 
 A professional Spring Boot application for integrating Khalti payment gateway services into your Java applications.
@@ -9,16 +9,16 @@ A professional Spring Boot application for integrating Khalti payment gateway se
 
 ## 📋 Table of Contents
 
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Security](#security)
-- [Testing](#testing)
-- [License](#license)
-- [Contributing](#contributing)
+- [Features](#-features)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
+- [API Documentation](#-api-documentation)
+- [Security](#-security)
+- [Testing](#-testing)
+- [License](#-license)
+- [Contributing](#-contributing)
 
 ## ✨ Features
 
@@ -76,8 +76,8 @@ For production, update the URLs and credentials accordingly.
 public ResponseEntity<ApiResponse<PaymentInitiateResponse>> initiatePayment(@RequestParam String orderId,
                                                                             @RequestParam String orderName,
                                                                             @RequestParam int amount) {
-    PaymentInitiateResponse response = khaltiPaymentService.initiatePayment(orderId, orderName, amount);
-    return ResponseEntity.ok(ApiResponse.success("Payment initiated successfully", response));
+   PaymentInitiateResponse response = khaltiPaymentService.initiatePayment(orderId, orderName, amount);
+   return ResponseEntity.ok(ApiResponse.success("Payment initiated successfully", response));
 }
 ```
 
@@ -86,19 +86,19 @@ public ResponseEntity<ApiResponse<PaymentInitiateResponse>> initiatePayment(@Req
 ```java
 @GetMapping("/callback")
 public ResponseEntity<ApiResponse<PaymentCallbackResponse>> paymentCallback(PaymentCallbackResponse paymentCallbackResponse) {
-    // Optional: verify payment status using lookup API
-    LookupResponse lookup = khaltiPaymentService.lookupPayment(paymentCallbackResponse.getPidx());
+   // Optional: verify payment status using lookup API
+   LookupResponse lookup = khaltiPaymentService.lookupPayment(paymentCallbackResponse.getPidx());
 
-    if (!"Completed".equalsIgnoreCase(lookup.getStatus())) {
-        return ResponseEntity.ok(
-                ApiResponse.error("Payment not completed: " + lookup.getStatus(), paymentCallbackResponse)
-        );
-    }
+   if (!"Completed".equalsIgnoreCase(lookup.getStatus())) {
+      return ResponseEntity.ok(
+              ApiResponse.error("Payment not completed: " + lookup.getStatus(), paymentCallbackResponse)
+      );
+   }
 
-    // Return success response
-    return ResponseEntity.ok(
-            ApiResponse.success("Payment completed successfully", paymentCallbackResponse)
-    );
+   // Return success response
+   return ResponseEntity.ok(
+           ApiResponse.success("Payment completed successfully", paymentCallbackResponse)
+   );
 }
 ```
 
@@ -107,8 +107,8 @@ public ResponseEntity<ApiResponse<PaymentCallbackResponse>> paymentCallback(Paym
 ```java
 @PostMapping("/verify")
 public ResponseEntity<ApiResponse<LookupResponse>> verifyPayment(@RequestParam String pidx) {
-    LookupResponse response = khaltiPaymentService.lookupPayment(pidx);
-    return ResponseEntity.ok(ApiResponse.success("Payment verification successful", response));
+   LookupResponse response = khaltiPaymentService.lookupPayment(pidx);
+   return ResponseEntity.ok(ApiResponse.success("Payment verification successful", response));
 }
 ```
 
@@ -125,35 +125,35 @@ public ResponseEntity<ApiResponse<LookupResponse>> verifyPayment(@RequestParam S
 #### Payment Initiation Request
 ```java
 public class PaymentInitiateRequest {
-    private String return_url;
-    private String website_url;
-    private Integer amount; // in paisa
-    private String purchase_order_id;
-    private String purchase_order_name;
-    private CustomerInfo customer_info;
+   private String return_url;
+   private String website_url;
+   private Integer amount; // in paisa
+   private String purchase_order_id;
+   private String purchase_order_name;
+   private CustomerInfo customer_info;
 }
 ```
 
 #### Payment Initiation Response
 ```java
 public class PaymentInitiateResponse {
-    private String pidx;
-    private String payment_url;
-    private String expires_at;
-    private Integer expires_in;
+   private String pidx;
+   private String payment_url;
+   private String expires_at;
+   private Integer expires_in;
 }
 ```
 
 #### Payment Callback Response
 ```java
 public class PaymentCallbackResponse {
-    private String pidx;
-    private String txnId;
-    private Integer amount;
-    private String status;
-    private String mobile;
-    private String purchase_order_id;
-    private String purchase_order_name;
+   private String pidx;
+   private String txnId;
+   private Integer amount;
+   private String status;
+   private String mobile;
+   private String purchase_order_id;
+   private String purchase_order_name;
 }
 ```
 
@@ -175,7 +175,7 @@ khalti.base.url=https://dev.khalti.com/api/v2
 
 ## 📄 License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE):
+This project is licensed under the  [MIT License](LICENSE).
 
 
 
